@@ -5,6 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'my-app';
+export class AppComponent { 
+  loadedFeature!:string
+  onNavigate(feature:string): void{
+    debugger
+    this.loadedFeature = feature
+  }
 }
