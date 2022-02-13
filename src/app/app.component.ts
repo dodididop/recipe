@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent { 
   loadedFeature!:string
   onNavigate(feature:string): void{
-    debugger
     this.loadedFeature = feature
   }
 }
