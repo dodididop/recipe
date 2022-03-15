@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 
 import { User } from './user.model';
+import { SIGN_IN_KEY, SIGN_UP_KEY } from '../configs/apiKey.config';
 
 export interface AuthResponseData {
   kind: string;
@@ -20,13 +21,14 @@ export interface AuthResponseData {
 export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
-
+  sign_in_key = SIGN_IN_KEY
+  sign_up_key = SIGN_UP_KEY
   constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDb0xTaRAoxyCgvaDF3kk5VYOsTwB_3o7Y',
+        `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${this.sign_up_key}`,
         {
           email: email,
           password: password,
@@ -49,7 +51,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBHF_Yf-OF6GMV35hl-Fb8lQhD1cRSb_QM',
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.sign_in_key}`,
         {
           email: email,
           password: password,
