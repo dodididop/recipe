@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';  
+import { AuthService } from './auth/auth.service';
 import { IpServiceService } from './ip.service';
 
 @Component({  
@@ -7,12 +8,12 @@ import { IpServiceService } from './ip.service';
   styleUrls: ['./app.component.css']  
 })  
 export class AppComponent implements OnInit {  
-  constructor(private ip:IpServiceService){}  
-  title = 'DemoApp';  
-  ipAddress!:string;  
-ngOnInit()  
+  constructor(private ip:IpServiceService,private authService:AuthService){}   
+  ipAddress:string;  
+  ngOnInit()  
   {  
-    this.getIP();  
+    this.getIP();
+    this.authService.autoLogin()
   }  
   getIP()  
   {  

@@ -10,9 +10,7 @@ import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
 export class DeviceDetectorComponent implements OnInit {
   deviceInfo!: DeviceInfo;
   
-  constructor(private deviceService:DeviceDetectorService) { 
-    
-  }
+  constructor(private deviceService:DeviceDetectorService) {}
 
   ngOnInit(): void {
     this.deviceInfo = this.deviceService.getDeviceInfo()
